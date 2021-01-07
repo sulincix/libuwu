@@ -10,7 +10,7 @@ char* get_node(char *data, char *path){
     for(int i=0;i<psize;i++){
         tmp=get_area(tmp,p[i]);
     }
-    return tmp;
+    return del_areas(tmp);
 }
 
 char *get_area(char*data,char*name){
@@ -30,8 +30,9 @@ char *get_area(char*data,char*name){
             for(int j=0;j<strlen(line);j++){
                 char c=line[j];
                 if (c=='\\'){
-                    char cc[2]="\0";
-                    cc[0]=line[j+1];
+                    char cc[3]="\0";
+                    cc[0]='\\';
+                    cc[1]=line[j+1];
                     j=j+2;
                     c=line[j];
                     strcat(ret,cc);
@@ -57,6 +58,35 @@ char *get_area(char*data,char*name){
             count=1;
         }
         
+    }
+    return ret;
+}
+
+char *del_areas(char *data){
+    char *ret=malloc(sizeof(char)*(strlen(data)+1));
+    strcpy(ret,"");
+    int count=0;
+    for(int i=0;i<strlen(data);i++){
+        char c=data[i];
+        if(c == '\\' && count==0){
+            char cc[2] = "\0";
+            c=data[i+1];
+            cc[0] = c;
+            i=i+2;
+            c=data[i];
+            strcat(ret,cc);
+        }
+        if(c == '{'){
+            count++;
+        }
+        if(count==0){
+            char cc[2] = "\0";
+            cc[0] = c;
+            strcat(ret,cc);
+        }
+        if(c == '}'){
+            count--;
+        }
     }
     return ret;
 }
