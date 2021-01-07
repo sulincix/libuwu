@@ -3,6 +3,16 @@
 #include "strings.c"
 #include "files.c"
 
+char* get_node(char *data, char *path){
+    char **p=strsplit(path,".");
+    int psize=strcount(path,".");
+    char*tmp=data;
+    for(int i=0;i<psize;i++){
+        tmp=get_area(tmp,p[i]);
+    }
+    return tmp;
+}
+
 char *get_area(char*data,char*name){
     int al=0;
     int count=0;

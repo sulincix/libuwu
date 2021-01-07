@@ -1,7 +1,10 @@
 ali {
-deneme 123
-ggww 1123
+  deneme 123
+  ggww 1123
+  riza {
+    uuuu
+  }
 }
 veli {
-abc 567 \{ \\
+  abc 567 \{ \\
 }
