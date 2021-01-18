@@ -12,7 +12,6 @@ char* get_node(char *data, char *path){
     }
     return del_areas(tmp);
 }
-
 char *get_area(char*data,char*name){
     int al=0;
     int count=0;
@@ -22,42 +21,36 @@ char *get_area(char*data,char*name){
     char *ret=malloc(sizeof(char)*sizeof(data));
     strcpy(ret,"");
     char **lines=strsplit(data,"\n");
-    int linelen=strcount(data,"\n");
-    for(int i=0;i<linelen;i++){
-        char *line=lines[i];
-        line=trim(line);
-        if(al==1){
-            for(int j=0;j<strlen(line);j++){
-                char c=line[j];
-                if (c=='\\'){
-                    char cc[3]="\0";
-                    cc[0]='\\';
-                    cc[1]=line[j+1];
-                    j=j+2;
-                    c=line[j];
-                    strcat(ret,cc);
-                }
-                if (c=='}'){
-                    count--;
-                }
-                if (c=='{'){
-                    count++;
-                }
-                if (count==0){
-                    return ret;
-                }else{
-                    char cc[2]="\0";
-                    cc[0]=c;
-                    strcat(ret,cc);
-                }
-            }
-            strcat(ret,"\n");
-        }
-        if(al==0 && 0==strcmp(line,tag)){
+    for(int i=0;i<strlen(data);i++){
+       if(al==0 && i==strpos(data,tag)){
             al=1;
             count=1;
+            i=i+strlen(tag);
         }
-        
+        if(al==1){
+            char c=data[i];
+            if (c=='\\'){
+                char cc[3]="\0";
+                cc[0]='\\';
+                cc[1]=data[i+1];
+                i=i+2;
+                c=data[i];
+                strcat(ret,cc);
+            }
+            if (c=='}'){
+                count--;
+            }
+            if (c=='{'){
+                count++;
+            }
+            if (count==0){
+                return ret;
+            }else{
+                char cc[2]="\0";
+                cc[0]=c;
+                strcat(ret,cc);
+            }
+        }
     }
     return ret;
 }

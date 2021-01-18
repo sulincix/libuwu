@@ -32,6 +32,15 @@ int strcount(char* buf,char* c){
     return size;
 }
 
+
+int strpos(char *haystack, char *needle)
+{
+   char *p = strstr(haystack, needle);
+   if (p)
+      return p - haystack;
+   return -1;   // Not found = -1.
+}
+
 char** strsplit( const char* s, const char* delim ) {
 	void* data;
 	char* _s = ( char* )s;
