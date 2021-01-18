@@ -32,6 +32,16 @@ int strcount(char* buf,char* c){
     return size;
 }
 
+char * strcut(int begin,char*data){
+    char *ret=malloc(sizeof(char)*(strlen(data)-begin+1));
+    strcpy(ret,"");
+    for(int i=begin;i<strlen(data);i++){
+        char c[2] = "\0";
+        c[0] = data[i];
+        strcat(ret,c);
+    }
+    return ret;
+}
 
 int strpos(char *haystack, char *needle)
 {

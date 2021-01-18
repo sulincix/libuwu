@@ -22,7 +22,7 @@ char *get_area(char*data,char*name){
     strcpy(ret,"");
     char **lines=strsplit(data,"\n");
     for(int i=0;i<strlen(data);i++){
-       if(al==0 && i==strpos(data,tag)){
+       if(al==0 && 0==strpos(strcut(i,data),tag) && (i == 0 || data[i-1] == ' ' || data[i-1] == '\n' || data[i-1] == '\t')){
             al=1;
             count=1;
             i=i+strlen(tag);
