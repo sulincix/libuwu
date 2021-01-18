@@ -13,6 +13,8 @@ char* get_node(char *data, char *path){
     return del_areas(tmp);
 }
 char *get_area(char*data,char*name){
+    if(!data)
+        return NULL;
     int al=0;
     int count=0;
     char *tag=malloc(sizeof(name)+sizeof(char)*2);
@@ -52,10 +54,12 @@ char *get_area(char*data,char*name){
             }
         }
     }
-    return ret;
+    return NULL;
 }
 
 char *del_areas(char *data){
+    if(!data)
+        return NULL;
     char *ret=malloc(sizeof(char)*(strlen(data)+1));
     strcpy(ret,"");
     int count=0;

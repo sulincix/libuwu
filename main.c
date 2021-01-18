@@ -8,5 +8,10 @@ int main(int argc,char *argv[]){
         v=get_node(data,argv[2]);
     else
         v=get_node(data,"");
-    puts(v);
+    if(v){
+        puts(v);
+    }else{
+        fputs("Error: Node not found.\n",stderr);
+        return 1;
+    }
 }
