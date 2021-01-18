@@ -32,10 +32,10 @@ int strcount(char* buf,char* c){
     return size;
 }
 
-char * strcut(int begin,char*data){
+char * strcut(int begin,int size,char*data){
     char *ret=malloc(sizeof(char)*(strlen(data)-begin+1));
     strcpy(ret,"");
-    for(int i=begin;i<strlen(data);i++){
+    for(int i=begin;i<begin+size;i++){
         char c[2] = "\0";
         c[0] = data[i];
         strcat(ret,c);
