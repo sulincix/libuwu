@@ -19,4 +19,7 @@ install:
 	install uwu $(DESTDIR)/usr/bin/
 	install libuwu.h $(DESTDIR)/usr/include/
 	install libuwu.pc $(DESTDIR)/usr/lib/pkgconfig/
+
+install-py:
+	mkdir -p $(DESTDIR)/`python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])'`/
 	install libuwu.py $(DESTDIR)/`python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])'`/uwu.py
